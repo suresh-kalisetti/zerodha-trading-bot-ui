@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,6 +11,8 @@ import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxSpinnerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

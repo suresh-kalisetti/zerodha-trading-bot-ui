@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TradeService } from 'src/app/services/trade/trade.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tradeService: TradeService) { }
 
   ngOnInit() {
+  }
+
+  restartBot() {
+    this.tradeService.restartBot().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  login() {
+    
+  }
+
+  postToken() {
+    this.tradeService.restartBot().subscribe(result => {
+      console.log(result);
+    });
   }
 
 }
