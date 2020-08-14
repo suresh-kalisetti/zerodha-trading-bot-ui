@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TradeService } from 'src/app/services/trade/trade.service';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,8 @@ export class DashboardComponent implements OnInit {
   isBotRunning = false;
 
   constructor(private tradeService: TradeService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit() {
     this.botHealth();
@@ -46,15 +48,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getDebugLogs() {
-    this.tradeService.getLogs("debug").subscribe(result => {
-      console.log(result);
-    })
+    this.router.navigate(["logs/debug"]);
   }
 
   getTradeLogs() {
-    this.tradeService.getLogs("trades").subscribe(result => {
-      console.log(result);
-    })
+    this.router.navigate(["logs/trades"]);
   }
 
   postToken() {

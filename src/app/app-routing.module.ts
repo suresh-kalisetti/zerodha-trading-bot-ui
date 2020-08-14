@@ -4,7 +4,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'logs',
+    loadChildren: () => import('./modules/logs/logs.module').then(m => m.LogsModule)
+  }
 ];
 
 @NgModule({
