@@ -9,14 +9,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +29,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
     MatIconModule,
     MatButtonModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@
     <mat-icon *ngIf="!isBotRunning" class="status error">error</mat-icon>
     <mat-icon *ngIf="isBotRunning" class="status no-error">check_circle</mat-icon>
     <button class="btn" mat-raised-button (click)="login()">Login</button>
-    <button class="btn" mat-raised-button>Logs</button>
-    <button class="btn" mat-raised-button (click)="restartBot()">Restart</button>
+    <button class="btn" mat-raised-button (click)="getDebugLogs()">Debug Logs</button>
+    <button class="btn" mat-raised-button (click)="getTradeLogs()">Trade Logs</button>
+    <button class="btn" mat-raised-button (click)="restartBot()">Restart Server</button>
 </div>

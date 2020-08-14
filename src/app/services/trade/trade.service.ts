@@ -21,4 +21,8 @@ export class TradeService {
   postToken(token): Observable<any> {
     return this.requestService.post(RequestUrls.TOKEN, token);
   }
+
+  getLogs(type: string): Observable<any> {
+    return this.requestService.get(RequestUrls.LOGS.replace("{type}", type));
+  }
 }
