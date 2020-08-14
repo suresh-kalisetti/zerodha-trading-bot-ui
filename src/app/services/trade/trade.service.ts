@@ -22,7 +22,8 @@ export class TradeService {
     return this.requestService.post(RequestUrls.TOKEN, token);
   }
 
-  getLogs(type: string): Observable<any> {
-    return this.requestService.get(RequestUrls.LOGS.replace("{type}", type));
+  getLogs(type: string, date: string): Observable<any> {
+    const url = RequestUrls.LOGS.replace("{type}", type).replace("{date}", date);
+    return this.requestService.get(url);
   }
 }

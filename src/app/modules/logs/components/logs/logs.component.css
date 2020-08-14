@@ -2,3 +2,33 @@
     margin: 5px;
     font-size: 12px;
 }
+
+.example-tree-invisible {
+    display: none;
+}
+  
+.example-tree ul, .example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+ul {
+    padding-inline-start: 10px;
+}
+
+.btn {
+    height: 20px !important;
+    line-height: 20px !important;
+    width: 20px !important;
+}
+
+.icon {
+    font-size: 20px !important;
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.mat-icon-rtl-mirror {
+    line-height: 20px !important;
+}

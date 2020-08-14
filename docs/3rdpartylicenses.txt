@@ -65,6 +65,8 @@ THE SOFTWARE.
 
 @angular/material/toolbar
 
+@angular/material/tree
+
 @angular/platform-browser
 MIT
 
