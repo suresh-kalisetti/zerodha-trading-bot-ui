@@ -10,6 +10,10 @@ export class TradeService {
 
   constructor(private requestService: RequestService) { }
 
+  botHealth() {
+    return this.requestService.get(RequestUrls.HEALTH);
+  }
+
   restartBot(): Observable<any> {
     return this.requestService.get(RequestUrls.RESTART);
   }

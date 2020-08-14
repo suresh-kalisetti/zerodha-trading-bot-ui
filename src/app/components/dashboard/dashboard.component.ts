@@ -8,9 +8,18 @@ import { TradeService } from 'src/app/services/trade/trade.service';
 })
 export class DashboardComponent implements OnInit {
 
+  isBotRunning = false;
+
   constructor(private tradeService: TradeService) { }
 
   ngOnInit() {
+    this.botHealth();
+  }
+
+  botHealth() {
+    this.tradeService.botHealth().subscribe(result => {
+      this.isBotRunning = true;
+    })
   }
 
   restartBot() {

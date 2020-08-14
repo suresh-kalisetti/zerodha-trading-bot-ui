@@ -5,3 +5,16 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.status {
+    float: right;
+    margin-right: 5%;
+}
+
+.error {
+    color: red;
+}
+
+.no-error {
+    color: green;
+}
