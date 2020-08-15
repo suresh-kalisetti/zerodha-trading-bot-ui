@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TradeService } from 'src/app/services/trade/trade.service';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material';
+import { take } from 'rxjs/operators';
 
 interface TreeNode {
   name: string;
@@ -31,7 +32,7 @@ export class LogsComponent implements OnInit {
     this.getDate();
     this.route.params.subscribe(params => {
       this.logType = params['type'];
-      this.tradeService.getLogs(this.logType, this.logDate).subscribe(result => {
+      this.tradeService.getLogs(this.logType, this.logDate).pipe(take(1)).subscribe(result => {
         this.formatLogs(result.logs);
       })
     });

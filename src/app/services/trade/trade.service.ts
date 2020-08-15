@@ -18,12 +18,12 @@ export class TradeService {
     return this.requestService.get(RequestUrls.RESTART);
   }
 
-  postToken(token): Observable<any> {
-    return this.requestService.post(RequestUrls.TOKEN, token);
-  }
-
   getLogs(type: string, date: string): Observable<any> {
     const url = RequestUrls.LOGS.replace("{type}", type).replace("{date}", date);
     return this.requestService.get(url);
+  }
+
+  postRequestToken(token: string) {
+    return this.requestService.post(RequestUrls.TOKEN, {token});
   }
 }

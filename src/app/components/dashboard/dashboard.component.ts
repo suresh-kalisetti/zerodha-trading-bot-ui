@@ -3,6 +3,7 @@ import { TradeService } from 'src/app/services/trade/trade.service';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
   }
 
   botHealth() {
-    this.tradeService.botHealth().subscribe(result => {
+    this.tradeService.botHealth().pipe(take(1)).subscribe(result => {
       this.isBotRunning = true;
     })
   }
@@ -34,9 +35,9 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+    dialogRef.afterClosed().pipe(take(1)).subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.tradeService.restartBot().subscribe(result => {
+        this.tradeService.restartBot().pipe(take(1)).subscribe(result => {
           console.log(result);
         }); 
       }
@@ -44,7 +45,8 @@ export class DashboardComponent implements OnInit {
   }
 
   login() {
-    
+    const loginUrl = "https://kite.zerodha.com/connect/login?v=3&api_key=465j9ctjd7k8hvtr";
+    window.location.href = loginUrl;
   }
 
   getDebugLogs() {
@@ -54,11 +56,4 @@ export class DashboardComponent implements OnInit {
   getTradeLogs() {
     this.router.navigate(["logs/trades"]);
   }
-
-  postToken() {
-    this.tradeService.restartBot().subscribe(result => {
-      console.log(result);
-    });
-  }
-
 }
