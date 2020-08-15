@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TradeService } from 'src/app/services/trade/trade.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -16,7 +16,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(private tradeService: TradeService,
     private dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.botHealth();
@@ -25,6 +26,7 @@ export class DashboardComponent implements OnInit {
   botHealth() {
     this.tradeService.botHealth().pipe(take(1)).subscribe(result => {
       this.isBotRunning = true;
+      this.showSnackBar("Bot is live.");
     })
   }
 
@@ -39,6 +41,7 @@ export class DashboardComponent implements OnInit {
       if (confirmed) {
         this.tradeService.restartBot().pipe(take(1)).subscribe(result => {
           console.log(result);
+          this.showSnackBar("Bot is restarting.");
         }); 
       }
     });
@@ -55,5 +58,11 @@ export class DashboardComponent implements OnInit {
 
   getTradeLogs() {
     this.router.navigate(["logs/trades"]);
+  }
+
+  showSnackBar(message: string) {
+    this._snackBar.open(message, null, {
+      duration: 3000,
+    });
   }
 }

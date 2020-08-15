@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -30,7 +31,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
     MatButtonModule,
     NgxSpinnerModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
