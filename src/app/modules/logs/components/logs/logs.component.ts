@@ -4,9 +4,10 @@ import { TradeService } from 'src/app/services/trade/trade.service';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material';
 import { take } from 'rxjs/operators';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 interface TreeNode {
-  name: string;
+  name: SafeHtml;
   children?: TreeNode[];
 }
 
@@ -26,7 +27,8 @@ export class LogsComponent implements OnInit {
   hasChild = (_: number, node: TreeNode) => !!node.children && node.children.length > 0;
 
   constructor(private route: ActivatedRoute,
-    private tradeService: TradeService) { }
+    private tradeService: TradeService,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.getDate();
@@ -49,19 +51,20 @@ export class LogsComponent implements OnInit {
     logs.forEach(log => {
       if (log) {
         const time = log.split('\t')[0].split('T')[1];
-        const message = log.split('\t')[1];
+        const color = log.split('\t')[1] == "ERROR" ? "red" : "green";
+        const message = log.split('\t')[2];
         const parent = time.substr(0, 2);
         const child = time.substr(3, 9);
         if (this.logs.findIndex(x => x.name == parent) != -1) {
           this.logs.filter(x => x.name == parent)[0].children.push({
-            name: child + "-" + message
+            name: this.sanitizer.bypassSecurityTrustHtml('<span style="color: ' + color + ';">' + child + " - " + message + '</span>')
           })
         } else {
           this.logs.push({
             name: parent,
             children: [
               {
-                name: child + "-" + message
+                name: this.sanitizer.bypassSecurityTrustHtml('<span style="color: ' + color + ';">' + child + " - " + message + '</span>')
               }
             ]
           })
